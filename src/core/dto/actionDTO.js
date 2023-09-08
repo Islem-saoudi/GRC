@@ -1,33 +1,37 @@
 class ActionDTO {
-  constructor({
+  constructor(
     ActionId,
+    NameAction,
     Description,
     TypeAction,
     DateDebut,
     DateFin,
-    Priorite,
+    Priority,
     Cout,
     Source,
     Status,
-    CommentaireId,
-    CoutSuppId,
+    Commentairs,
+    Couts,
     DateFinSupp,
-    SecurityId,
-  }) {
+    Securitys
+  ) 
+  {
     this.ActionId = ActionId;
+    this.NameAction = NameAction;
     this.Description = Description;
     this.TypeAction = TypeAction;
     this.DateDebut = DateDebut;
     this.DateFin = DateFin;
-    this.Priorite = Priorite;
+    this.Priority = Priority;
     this.Cout = Cout;
     this.Source = Source;
     this.Status = Status;
-    this.CommentaireId = CommentaireId;
-    this.CoutSuppId = CoutSuppId;
+    this.Commentairs = Commentairs;
+    this.Couts = Couts;
     this.DateFinSupp = DateFinSupp;
-    this.SecurityId = SecurityId;
+    this.Securitys = Securitys;
   }
 }
-
+  
 module.exports = ActionDTO;
+  

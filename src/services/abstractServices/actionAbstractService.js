@@ -9,6 +9,14 @@ class ActionAbstractService extends ActionService {
     throw new Error('Method not implemented');
   }
 
+  async getAll() {
+    throw new Error('Method not implemented');
+  }
+
+  async getAllPaginated(pageNumber, pageSize) {
+    throw new Error('Method not implemented');
+  }
+
   async getById(id) {
     throw new Error('Method not implemented');
   }

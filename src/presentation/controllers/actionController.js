@@ -16,21 +16,28 @@ const getAllActions = async (req, res) => {
   }
 };
 
+
 const getPaginatedActions = async (req, res) => {
   try {
-    const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 1 ;
-    const actions = await actionService.getAllPaginated(pageNumber, pageSize);
-    res.json(actions);
+    const pageSize = parseInt(req.query.pageSize) || 5; 
+    const page = parseInt(req.query.page) || 1; 
+    
+    const actions = await actionService.getAllPaginated(page, pageSize);
+    const totalCount = await actionService.getTotalCount();
+    const pageNumber = Math.ceil(totalCount / pageSize); 
+    
+    res.json({ actions, totalCount, pageNumber });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
+
 const createAction = async (req, res) => {
   try {
     const actionDTO = new ActionDTO(
       uuid.v4(),
+      req.body.NameAction,
       req.body.Description,
       req.body.TypeAction,
       req.body.DateDebut,
@@ -72,6 +79,7 @@ const updateAction = async (req, res) => {
     const id = req.params.id;
     const actionDTO = new ActionDTO(
       req.body.ActionId,
+      req.body.NameAction,
       req.body.Description,
       req.body.TypeAction,
       req.body.DateDebut,

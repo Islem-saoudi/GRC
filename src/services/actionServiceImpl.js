@@ -1,4 +1,5 @@
 const ActionService = require('./interfaces/actionService');
+const Action = require('../core/entities/action');
 
 class ActionServiceImpl extends ActionService {
   constructor(actionRepository) {
@@ -12,6 +13,10 @@ class ActionServiceImpl extends ActionService {
 
   async getAllPaginated(pageNumber, pageSize) {
     return this.actionRepository.getAllPaginated(pageNumber, pageSize);
+  }
+
+  async getTotalCount() {
+    return Action.countDocuments();
   }
 
   async create(actionDTO) {

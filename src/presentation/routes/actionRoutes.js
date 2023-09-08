@@ -1,5 +1,6 @@
 const express = require('express');
 const actionController = require('../controllers/actionController');
+const Action = require('../../core/entities/action');
 
 const router = express.Router();
 

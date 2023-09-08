@@ -1,31 +1,40 @@
-const SecurityCheckService = require('./interfaces/securityCheckService');
+const ActionService = require('./interfaces/actionService');
+const Action = require('../core/entities/action');
 
-class SecurityCheckServiceImpl extends SecurityCheckService {
-    constructor(securityCheckRepository) {
-        super();
-        this.securityCheckRepository = securityCheckRepository;
-    }
+class ActionServiceImpl extends ActionService {
+  constructor(actionRepository) {
+    super();
+    this.actionRepository = actionRepository;
+  }
 
-    async getAll() {
-        return this.securityCheckRepository.getAll()
-    }
+  async getAll() {
+    return this.actionRepository.getAll();
+  }
 
-    async create(securityCheckDTO) {
-        return this.securityCheckRepository.create(securityCheckDTO);
-    }
+  async getAllPaginated(pageNumber, pageSize) {
+    return this.actionRepository.getAllPaginated(pageNumber, pageSize);
+  }
 
-    async getById(id) {
-        return this.securityCheckRepository.getById(id);
-    }
+  async getTotalCount() {
+    return Action.countDocuments();
+  }
 
-    async update(id, securityCheckDTO) {
-        return this.securityCheckRepository.update(id, securityCheckDTO);
-    }
+  async create(actionDTO) {
+    return this.actionRepository.create(actionDTO);
+  }
 
-    async delete(id) {
-        return this.securityCheckRepository.delete(id);
-    }
+  async getById(id) {
+    return this.actionRepository.getById(id);
+  }
+
+  async update(id, actionDTO) {
+    return this.actionRepository.update(id, actionDTO);
+  }
+
+  async delete(id) {
+    return this.actionRepository.delete(id);
+  }
+
 }
 
-module.exports = SecurityCheckServiceImpl;
-
+module.exports = ActionServiceImpl;

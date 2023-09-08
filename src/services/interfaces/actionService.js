@@ -5,8 +5,8 @@ class ActionService {
     async update(id, actionDTO) {}
     async delete(id) {}
     async getAll() {}
-    async getAllPaginated(pageNumber, pageSize) {}
-}
+    async getAllPaginated(page, pageSize) {}
+  }
     
-module.exports = ActionService;
+  module.exports = ActionService;
     
