@@ -19,7 +19,7 @@ const getAllActions = async (req, res) => {
 
 const getPaginatedActions = async (req, res) => {
   try {
-    const pageSize = parseInt(req.query.pageSize) || 5; 
+    const pageSize = parseInt(req.query.pageSize) || 10; 
     const page = parseInt(req.query.page) || 1; 
     
     const actions = await actionService.getAllPaginated(page, pageSize);
