@@ -19,14 +19,19 @@ const getAllActions = async (req, res) => {
 
 const getPaginatedActions = async (req, res) => {
   try {
-    const pageSize = parseInt(req.query.pageSize) || 5; 
+    const pageSize = parseInt(req.query.pageSize) || 10; 
     const page = parseInt(req.query.page) || 1; 
     
     const actions = await actionService.getAllPaginated(page, pageSize);
     const totalCount = await actionService.getTotalCount();
     const pageNumber = Math.ceil(totalCount / pageSize); 
     
-    res.json({ actions, totalCount, pageNumber });
+    const actionsWithIndex = actions.map((action, index) => ({
+      index: index + 1, 
+      ...action
+    }));
+
+    res.json({ actions: actionsWithIndex, totalCount, pageNumber });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
