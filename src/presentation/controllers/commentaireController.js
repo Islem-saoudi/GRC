@@ -18,12 +18,12 @@ const getAllCommentaires = async (req, res) => {
 
 const createCommentaire = async (req, res) => {
   try {
-    const commentaireDTO = new CommentaireDTO(
-      uuid.v4(),
-      req.body.Commentaire,
-      req.body.DateHeure,
-      req.body.UserId
-    );
+    const commentaireDTO = new CommentaireDTO({
+      CommentaireId: uuid.v4(),
+      Commentaire: req.body.Commentaire,
+      DateHeure: req.body.DateHeure,
+      UserId: req.body.UserId
+  });
 
     const createdCommentaire = await commentaireService.create(commentaireDTO);
     res.status(201).json(createdCommentaire);
@@ -50,12 +50,12 @@ const getCommentaireById = async (req, res) => {
 const updateCommentaire = async (req, res) => {
   try {
     const id = req.params.id;
-    const commentaireDTO = new CommentaireDTO(
-      req.body.CommentaireId,
-      req.body.Commentaire,
-      req.body.DateHeure,
-      req.body.UserId
-    );
+    const commentaireDTO = new CommentaireDTO({
+      CommentaireId: req.body.CommentaireId,
+      Commentaire: req.body.Commentaire,
+      DateHeure: req.body.DateHeure,
+      UserId: req.body.UserId
+  });
 
     const updatedCommentaire = await commentaireService.update(id, commentaireDTO);
     res.json(updatedCommentaire);

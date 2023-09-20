@@ -5,7 +5,7 @@ const commentaireSchema = new mongoose.Schema({
     CommentaireId: { type: String, default: uuid.v4, unique: true },
     Commentaire: { type: String, required: true },
     DateHeure: { type: Date, default: Date.now },
-    UserId: { type: BigInt },
+    UserId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
   
   

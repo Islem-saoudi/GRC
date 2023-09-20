@@ -17,12 +17,12 @@ const getAllSecurityCheck = async (req, res) => {
 
 const createSecurityCheck = async (req, res) => {
     try{
-        const securityCheckDTO = new SecurityCheckDTO(
-            uuid.v4(),
-            req.body.Description,
-            req.body.Labbel,
-            req.body.Source
-        );
+        const securityCheckDTO = new SecurityCheckDTO({
+            SecurityId: uuid.v4(),
+            Description: req.body.Description,
+            Labbel: req.body.Labbel,
+            Source: req.body.Source
+        });
 
         const createdSecurityCheck = await securityCheckService.create(securityCheckDTO);
         res.status(201).json(createdSecurityCheck);
@@ -48,12 +48,12 @@ const getSecurityCheckById = async (req, res) => {
 const updateSecurityCheck = async (req, res) => {
     try {
         const id = req.params.id;
-        const securityCheckDTO = new SecurityCheckDTO(
-            req.body.SecurityId,
-            req.body.Description,
-            req.body.Labbel,
-            req.body.Source
-        );
+        const securityCheckDTO = new SecurityCheckDTO({
+            SecurityId: req.body.SecurityId,
+            Description: req.body.Description,
+            Labbel: req.body.Labbel,
+            Source: req.body.Source
+        });
 
         const updatedCoupSupp = await securityCheckService.update(id, securityCheckDTO);
         res.json(updatedCoupSupp);

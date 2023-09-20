@@ -17,11 +17,11 @@ const getAllCoutSupp = async (req, res) => {
 
 const createCoutSupp = async (req, res) => {
     try{
-        const coutSuppDTO = new CoutSuppDTO(
-            uuid.v4(),
-            req.body.Montant,
-            req.body.DateHeure
-        );
+        const coutSuppDTO = new CoutSuppDTO({
+            CoutSuppId: uuid.v4(),
+            Montant: req.body.Montant,
+            DateHeure: req.body.DateHeure
+       });
 
         const createdCoutSupp = await coutSuppService.create(coutSuppDTO);
         res.status(201).json(createdCoutSupp);
@@ -47,11 +47,11 @@ const getCoutSuppById = async (req, res) => {
 const updateCoutSupp = async (req, res) => {
     try {
         const id = req.params.id;
-        const coutSuppDTO = new CoutSuppDTO(
-            req.body.CoutSuppId,
-            req.body.Montant,
-            req.body.DateHeure
-        );
+        const coutSuppDTO = new CoutSuppDTO({
+            CoutSuppId: req.body.CoutSuppId,
+            Montant: req.body.Montant,
+            DateHeure: req.body.DateHeure
+       });
 
         const updatedCoutSupp = await coutSuppService.update(id, coutSuppDTO);
         res.json(updatedCoutSupp);

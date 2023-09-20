@@ -13,10 +13,10 @@ const actionSchema = new mongoose.Schema({
   Cout: { type: Number, required: true },
   Source: { type: String },
   Status: { type: String },
-  CommentaireId: { type: String },
-  CoutSuppId: { type: String },
+  CommentaireId: { type: mongoose.Schema.Types.ObjectId, ref: 'Commentaire' },
+  CoutSuppId: { type: mongoose.Schema.Types.ObjectId, ref: 'CoutSupplementaire' },
   DateFinSupp: { type: Date },
-  SecurityId: { type: String },
+  SecurityId: { type: mongoose.Schema.Types.ObjectId, ref: 'SecurityCheckFamily' },
 });
 
 

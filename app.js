@@ -2,6 +2,7 @@ const express = require('express');
 const config = require('./config');
 const { connectToDatabase } = require('./src/bds/database');
 const actionControllers = require('./src/presentation/controllers/actionController');
+const acteurActionControllers = require('./src/presentation/controllers/acteurActionController');
 const rasciControllers = require('./src/presentation/controllers/rasciController');
 const userControllers = require('./src/presentation/controllers/userController');
 const commentaireControllers = require('./src/presentation/controllers/commentaireController');
@@ -30,6 +31,13 @@ async function startServer() {
     app.get('/action/:id', actionControllers.getActionById.bind(actionControllers));
     app.put('/action/:id', actionControllers.updateAction.bind(actionControllers));
     app.delete('/action/:id', actionControllers.deleteAction.bind(actionControllers));
+
+    //API ActeurAction 
+    app.get('/acteurActions', acteurActionControllers.getAllActeurActions.bind(acteurActionControllers));
+    app.post('/acteurAction', acteurActionControllers.createActeurAction.bind(acteurActionControllers));
+    app.get('/acteurAction/:id', acteurActionControllers.getActeurActionById.bind(acteurActionControllers));
+    app.put('/acteurAction/:id', acteurActionControllers.updateActeurAction.bind(acteurActionControllers));
+    app.delete('/acteurAction/:id', acteurActionControllers.deleteActeurAction.bind(acteurActionControllers));
 
     //API User 
     app.get('/users', userControllers.getAllUsers.bind(userControllers));
