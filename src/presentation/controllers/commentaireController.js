@@ -20,8 +20,9 @@ const createCommentaire = async (req, res) => {
   try {
     const commentaireDTO = new CommentaireDTO(
       uuid.v4(),
-      req.body.CommentaireD,
-      req.body.DateHeure
+      req.body.Commentaire,
+      req.body.DateHeure,
+      req.body.UserId
     );
 
     const createdCommentaire = await commentaireService.create(commentaireDTO);
@@ -51,8 +52,9 @@ const updateCommentaire = async (req, res) => {
     const id = req.params.id;
     const commentaireDTO = new CommentaireDTO(
       req.body.CommentaireId,
-      req.body.CommentaireD,
-      req.body.DateHeure
+      req.body.Commentaire,
+      req.body.DateHeure,
+      req.body.UserId
     );
 
     const updatedCommentaire = await commentaireService.update(id, commentaireDTO);

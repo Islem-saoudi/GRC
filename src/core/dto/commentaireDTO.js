@@ -1,11 +1,12 @@
 class CommentaireDTO {
   constructor(
-      CommentaireId, CommentaireD, DateHeure
+      CommentaireId, Commentaire, DateHeure, UserId
   )
   {
       this.CommentaireId = CommentaireId;
-      this.CommentaireD = CommentaireD;
+      this.Commentaire = Commentaire;
       this.DateHeure = DateHeure;
+      this.UserId = UserId;
   }
 }
 

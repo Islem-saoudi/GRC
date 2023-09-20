@@ -3,8 +3,9 @@ const uuid = require('uuid');
 
 const commentaireSchema = new mongoose.Schema({
     CommentaireId: { type: String, default: uuid.v4, unique: true },
-    CommentaireD: { type: String, required: true },
+    Commentaire: { type: String, required: true },
     DateHeure: { type: Date, default: Date.now },
+    UserId: { type: BigInt },
 });
   
   
