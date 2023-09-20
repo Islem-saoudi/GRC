@@ -1,9 +1,8 @@
 class CoutSupplementaireDTO {
-    constructor({ CoutSuppId, Montant, DateHeure, Etat }) {
+    constructor({ CoutSuppId, Montant, DateHeure }) {
       this.CoutSuppId = CoutSuppId;
       this.Montant = Montant;
       this.DateHeure = DateHeure;
-      this.Etat = Etat;
     }
 }
   

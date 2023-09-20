@@ -2,6 +2,7 @@ const express = require('express');
 const config = require('./config');
 const { connectToDatabase } = require('./src/bds/database');
 const actionControllers = require('./src/presentation/controllers/actionController');
+const rasciControllers = require('./src/presentation/controllers/rasciController');
 const commentaireControllers = require('./src/presentation/controllers/commentaireController');
 const coutSuppControllers = require('./src/presentation/controllers/coutSuppController');
 const securityCheckControllers = require('./src/presentation/controllers/securityCheckController');
@@ -49,6 +50,13 @@ async function startServer() {
     app.get('/coutSupplementaire/:id', coutSuppControllers.getCoutSuppById.bind(coutSuppControllers));
     app.put('/coutSupplementaire/:id', coutSuppControllers.updateCoutSupp.bind(coutSuppControllers));
     app.delete('/coutSupplementaire/:id', coutSuppControllers.deleteCoutSupp.bind(coutSuppControllers));
+
+    //API Rasci 
+    app.get('/rasci', rasciControllers.getAllRascis.bind(rasciControllers));
+    app.post('/rasci', rasciControllers.createRasci.bind(rasciControllers));
+    app.get('/rasci/:id', rasciControllers.getRasciById.bind(rasciControllers));
+    app.put('/rasci/:id', rasciControllers.updateRasci.bind(rasciControllers));
+    app.delete('/rasci/:id', rasciControllers.deleteRasci.bind(rasciControllers));
 
     // Start the server
     app.listen(config.port, () => {
