@@ -1,6 +1,6 @@
 const express = require('express');
 const acteurActionController = require('../controllers/acteurActionController');
-const ActeurAction = require('../../core/entities/acteurAction');
+//const ActeurAction = require('../../core/entities/acteurAction');
 
 const router = express.Router();
 

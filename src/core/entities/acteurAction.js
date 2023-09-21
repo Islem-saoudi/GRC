@@ -5,9 +5,11 @@ const acteurActionSchema = new mongoose.Schema({
   UserId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   ActionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Action' },
   RoleRasci: { type: mongoose.Schema.Types.ObjectId, ref: 'RASCI' },
-  Description: { type: String, require: true},
+  Description: { type: String, required: true},
   TypeAction: { type: String},
 });
 
-module.exports = mongoose.model('ActeurAction', acteurActionSchema);
 
+const ActeurAction = mongoose.model('ActeurAction', acteurActionSchema);
+
+module.exports = ActeurAction;

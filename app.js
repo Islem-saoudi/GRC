@@ -7,7 +7,7 @@ const rasciControllers = require('./src/presentation/controllers/rasciController
 const userControllers = require('./src/presentation/controllers/userController');
 const commentaireControllers = require('./src/presentation/controllers/commentaireController');
 const coutSuppControllers = require('./src/presentation/controllers/coutSuppController');
-const securityCheckControllers = require('./src/presentation/controllers/securityCheckController');
+const securityCheckFamilyControllers = require('./src/presentation/controllers/securityCheckFamilyController');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const cors = require('cors');
@@ -54,11 +54,11 @@ async function startServer() {
     app.delete('/commentaire/:id', commentaireControllers.deleteCommentaire.bind(commentaireControllers));
 
     //API Security Check Family
-    app.get('/securityCheckFamilys', securityCheckControllers.getAllSecurityCheck.bind(securityCheckControllers));
-    app.post('/securityCheckFamily', securityCheckControllers.createSecurityCheck.bind(securityCheckControllers));
-    app.get('/securityCheckFamily/:id', securityCheckControllers.getSecurityCheckById.bind(securityCheckControllers));
-    app.put('/securityCheckFamily/:id', securityCheckControllers.updateSecurityCheck.bind(securityCheckControllers));
-    app.delete('/securityCheckFamily/:id', securityCheckControllers.deleteSecurityCheck.bind(securityCheckControllers));
+    app.get('/securityCheckFamilys', securityCheckFamilyControllers.getAllSecurityCheckFamily.bind(securityCheckFamilyControllers));
+    app.post('/securityCheckFamily', securityCheckFamilyControllers.createSecurityCheckFamily.bind(securityCheckFamilyControllers));
+    app.get('/securityCheckFamily/:id', securityCheckFamilyControllers.getSecurityCheckFamilyById.bind(securityCheckFamilyControllers));
+    app.put('/securityCheckFamily/:id', securityCheckFamilyControllers.updateSecurityCheckFamily.bind(securityCheckFamilyControllers));
+    app.delete('/securityCheckFamily/:id', securityCheckFamilyControllers.deleteSecurityCheckFamily.bind(securityCheckFamilyControllers));
 
     //API Cout Supplementaire
     app.get('/coutSupplementaires', coutSuppControllers.getAllCoutSupp.bind(coutSuppControllers));

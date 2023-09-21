@@ -1,5 +1,5 @@
 const RasciService = require('./interfaces/rasciService');
-const Rasci = require('../core/entities/rasci');
+//const Rasci = require('../core/entities/rasci');
 
 class RasciServiceImpl extends RasciService {
   constructor(rasciRepository) {

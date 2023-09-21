@@ -1,6 +1,6 @@
-const SecurityCheckService = require('../interfaces/securityCheckService');
+const SecurityCheckFamilyService = require('../interfaces/securityCheckFamilyService');
 
-class SecurityCheckAbstractService extends SecurityCheckService {
+class SecurityCheckFamilyAbstractService extends SecurityCheckFamilyService {
     constructor() {
         super();
     }
@@ -9,7 +9,7 @@ class SecurityCheckAbstractService extends SecurityCheckService {
         throw new Error('Method not implemented')
     }
 
-    async create(securityCheckDTO) {
+    async create(securityCheckFamilyDTO) {
         throw new Error('Method not implemented')
     }
 
@@ -17,7 +17,7 @@ class SecurityCheckAbstractService extends SecurityCheckService {
         throw new Error('Method not implemented')
     }
 
-    async update(id, securityCheckDTO) {
+    async update(id, securityCheckFamilyDTO) {
         throw new Error('Method not implemented')
     }
 
@@ -26,5 +26,5 @@ class SecurityCheckAbstractService extends SecurityCheckService {
     }
 }
 
-module.exports = SecurityCheckAbstractService;
+module.exports = SecurityCheckFamilyAbstractService;
 

@@ -7,4 +7,6 @@ const rasciSchema = new mongoose.Schema({
   Symbole: { type: String},
 });
 
-module.exports = mongoose.model('RASCI', rasciSchema);
+const Rasci = mongoose.model('RASCI', rasciSchema);
+
+module.exports = Rasci;

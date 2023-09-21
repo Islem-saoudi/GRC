@@ -1,8 +1,8 @@
 class SecurityCheckFamilyDTO {
-    constructor({ SecurityId, Description, Label, Source }) {
+    constructor({ SecurityId, Description, Labbel, Source }) {
       this.SecurityId = SecurityId;
       this.Description = Description;
-      this.Label = Label;
+      this.Labbel = Labbel;
       this.Source = Source;
     }
 }

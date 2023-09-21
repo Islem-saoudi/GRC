@@ -1,5 +1,5 @@
 const ActeurActionService = require('./interfaces/acteurActionService');
-const ActeurAction = require('../core/entities/acteurAction');
+//const ActeurAction = require('../core/entities/acteurAction');
 
 class ActeurActionServiceImpl extends ActeurActionService {
   constructor(acteurActionRepository) {

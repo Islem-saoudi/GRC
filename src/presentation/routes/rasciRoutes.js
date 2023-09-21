@@ -1,6 +1,6 @@
 const express = require('express');
 const rasciController = require('../controllers/rasciController');
-const Rasci = require('../../core/entities/rasci');
+//const Rasci = require('../../core/entities/rasci');
 
 const router = express.Router();
 
