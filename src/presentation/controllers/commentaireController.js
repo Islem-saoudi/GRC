@@ -18,11 +18,12 @@ const getAllCommentaires = async (req, res) => {
 
 const createCommentaire = async (req, res) => {
   try {
+    const userId = req.body.UserId;
     const commentaireDTO = new CommentaireDTO({
       CommentaireId: uuid.v4(),
       Commentaire: req.body.Commentaire,
       DateHeure: req.body.DateHeure,
-      UserId: req.body.UserId
+      UserId: userId
   });
 
     const createdCommentaire = await commentaireService.create(commentaireDTO);
@@ -50,11 +51,18 @@ const getCommentaireById = async (req, res) => {
 const updateCommentaire = async (req, res) => {
   try {
     const id = req.params.id;
+    const updatedUserId = req.body.UserId;
+
+    // Vérifiez si l'utilisateur authentifié correspond à l'utilisateur du commentaire
+    if (req.user.id !== updatedUserId) {
+      return res.status(403).json({ error: "You are not authorized to update this comment." });
+    }
+
     const commentaireDTO = new CommentaireDTO({
       CommentaireId: req.body.CommentaireId,
       Commentaire: req.body.Commentaire,
       DateHeure: req.body.DateHeure,
-      UserId: req.body.UserId
+      UserId: updatedUserId
   });
 
     const updatedCommentaire = await commentaireService.update(id, commentaireDTO);
@@ -67,6 +75,19 @@ const updateCommentaire = async (req, res) => {
 const deleteCommentaire = async (req, res) => {
   try {
     const id = req.params.id;
+
+    // Récupérez l'ID de l'utilisateur authentifié (keycloack!)
+    const authenticatedUserId = req.user.id;
+
+    // Récupérez l'ID de l'utilisateur du commentaire
+    const commentaire = await commentaireService.getById(id);
+    const userIdOfComment = commentaire.UserId;
+
+    // Vérifiez si l'utilisateur authentifié correspond à l'utilisateur du commentaire
+    if (authenticatedUserId !== userIdOfComment) {
+      return res.status(403).json({ error: "You are not authorized to delete this comment." });
+    }
+
     await commentaireService.delete(id);
     res.json({ message: 'Comment deleted successfully' });
   } catch (error) {

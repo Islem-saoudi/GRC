@@ -7,7 +7,9 @@ class CommentaireRepository {
   }
 
   async getById(id) {
-    return Commentaire.findById(id);
+    return Commentaire.findById(id)
+    .populate('UserId') 
+    .exec();
   }
 
   async update(id, commentaireDTO) {

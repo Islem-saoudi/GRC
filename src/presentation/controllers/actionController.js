@@ -35,6 +35,11 @@ const getPaginatedActions = async (req, res) => {
 
 const createAction = async (req, res) => {
   try {
+    const commentaireId = req.body.CommentaireId;
+    const coutSuppId =req.body.CoutSuppId;
+    const securityId = req.body.SecurityId;
+
+
     const actionDTO = new ActionDTO({
       ActionId: uuid.v4(),
       NameAction: req.body.NameAction,
@@ -46,10 +51,10 @@ const createAction = async (req, res) => {
       Cout: req.body.Cout,
       Source: req.body.Source,
       Status: req.body.Status,
-      CommentaireId: req.body.CommentaireId,
-      CoutSuppId: req.body.CoutSuppId,
+      CommentaireId: commentaireId,
+      CoutSuppId: coutSuppId,
       DateFinSupp: req.body.DateFinSupp,
-      SecurityId: req.body.SecurityId
+      SecurityId: securityId
   });
 
     const createdAction = await actionService.create(actionDTO);
@@ -77,6 +82,11 @@ const getActionById = async (req, res) => {
 const updateAction = async (req, res) => {
   try {
     const id = req.params.id;
+
+    const updatedCommentaireId = req.body.CommentaireId; // Mettez à jour avec la nouvelle valeur
+    const updatedCoutSuppId = req.body.CoutSuppId; // Mettez à jour avec la nouvelle valeur
+    const updatedSecurityId = req.body.SecurityId;
+    
     const actionDTO = new ActionDTO({
       ActionId: req.body.ActionId,
       NameAction: req.body.NameAction,
@@ -88,10 +98,10 @@ const updateAction = async (req, res) => {
       Cout: req.body.Cout,
       Source: req.body.Source,
       Status: req.body.Status,
-      CommentaireId: req.body.CommentaireId,
-      CoutSuppId: req.body.CoutSuppId,
+      CommentaireId: updatedCommentaireId,
+      CoutSuppId: updatedCoutSuppId,
       DateFinSupp: req.body.DateFinSupp,
-      SecurityId: req.body.SecurityId
+      SecurityId: updatedSecurityId
   });
 
     const updatedAction = await actionService.update(id, actionDTO);

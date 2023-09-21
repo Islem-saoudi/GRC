@@ -17,10 +17,14 @@ const getAllActeurActions = async (req, res) => {
 
 const createActeurAction = async (req, res) => {
     try{
+        const userId = req.body.UserId; 
+        const actionId = req.body.ActionId; 
+        const roleRasci = req.body.RoleRasci;
+
         const acteurActionDTO = new ActeurActionDTO({
-            UserId: req.body.UserId,
-            ActionId: req.body.ActionId,
-            RoleRasci: req.body.RoleRasci,
+            UserId: userId,
+            ActionId: actionId,
+            RoleRasci: roleRasci,
             Description: req.body.Description,
             TypeAction: req.body.TypeAction
         });
@@ -49,15 +53,19 @@ const getActeurActionById = async (req, res) => {
 const updateActeurAction = async (req, res) => {
     try {
         const id = req.params.id;
-        const acteurActionDTO = new ActeurActionDTO({
-            UserId: req.body.UserId,
-            ActionId: req.body.ActionId,
-            RoleRasci: req.body.RoleRasci,
-            Description: req.body.Description,
-            TypeAction: req.body.TypeAction
-    });
+        const updatedUserId = req.body.UserId; // Mettez à jour avec la nouvelle valeur
+        const updatedActionId = req.body.ActionId; // Mettez à jour avec la nouvelle valeur
+        const updatedRoleRasci = req.body.RoleRasci;
 
-        const updatedActeurAction = await acteurActionService.update(id, acteurActionDTO);
+        const updatedActeurActionDTO = new ActeurActionDTO({
+            UserId: updatedUserId,
+            ActionId: updatedActionId,
+            RoleRasci: updatedRoleRasci,
+            Description: req.body.Description,
+            TypeAction: req.body.TypeAction,
+        });
+
+        const updatedActeurAction = await acteurActionService.update(id, updatedActeurActionDTO);
         res.json(updatedActeurAction);
     } catch (error) {
         res.status(500).json({ error: error.message});

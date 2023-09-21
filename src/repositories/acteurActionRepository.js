@@ -8,7 +8,11 @@ class ActeurActionRepository {
   }
 
   async getById(id) {
-    return ActeurAction.findById(id);
+    return ActeurAction.findById(id)
+    .populate('UserId') 
+    .populate('ActionId') 
+    .populate('RoleRasci') 
+    .exec();
   }
 
   async update(id, acteurActionDTO) {
