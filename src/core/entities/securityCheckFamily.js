@@ -8,5 +8,5 @@ const securityCheckFamilySchema = new mongoose.Schema({
     Source: { type: String, required: true }
 });
 
-const securityCheckFamily = mongoose.model('securityCheckFamily', securityCheckFamilySchema);
-module.exports = securityCheckFamily;
+const SecurityCheckFamily = mongoose.model('SecurityCheckFamily', securityCheckFamilySchema);
+module.exports = SecurityCheckFamily;
