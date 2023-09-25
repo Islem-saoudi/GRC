@@ -21,13 +21,13 @@ const createActeurAction = async (req, res) => {
         const actionId = req.body.ActionId; 
         const roleRasci = req.body.RoleRasci;
 
-        const acteurActionDTO = new ActeurActionDTO({
-            UserId: userId,
-            ActionId: actionId,
-            RoleRasci: roleRasci,
-            Description: req.body.Description,
-            TypeAction: req.body.TypeAction
-        });
+        const acteurActionDTO = new ActeurActionDTO(
+            userId,
+            actionId,
+            roleRasci,
+            req.body.Description,
+            req.body.TypeAction
+        );
 
         const createdActeurAction = await acteurActionService.create(acteurActionDTO);
         res.status(201).json(createdActeurAction);
@@ -57,13 +57,13 @@ const updateActeurAction = async (req, res) => {
         const updatedActionId = req.body.ActionId; // Mettez à jour avec la nouvelle valeur
         const updatedRoleRasci = req.body.RoleRasci;
 
-        const updatedActeurActionDTO = new ActeurActionDTO({
-            UserId: updatedUserId,
-            ActionId: updatedActionId,
-            RoleRasci: updatedRoleRasci,
-            Description: req.body.Description,
-            TypeAction: req.body.TypeAction,
-        });
+        const updatedActeurActionDTO = new ActeurActionDTO(
+            updatedUserId,
+            updatedActionId,
+            updatedRoleRasci,
+            req.body.Description,
+            req.body.TypeAction,
+        );
 
         const updatedActeurAction = await acteurActionService.update(id, updatedActeurActionDTO);
         res.json(updatedActeurAction);

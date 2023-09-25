@@ -19,13 +19,12 @@ const getAllCommentaires = async (req, res) => {
 const createCommentaire = async (req, res) => {
   try {
     const userId = req.body.UserId;
-    const commentaireDTO = new CommentaireDTO({
-      CommentaireId: uuid.v4(),
-      Commentaire: req.body.Commentaire,
-      DateHeure: req.body.DateHeure,
-      UserId: userId
-  });
-
+    const commentaireDTO = new CommentaireDTO(
+      uuid.v4(),
+      req.body.Commentaire,
+      req.body.DateHeure,
+      userId             
+    );
     const createdCommentaire = await commentaireService.create(commentaireDTO);
     res.status(201).json(createdCommentaire);
   } catch (error) {
@@ -58,12 +57,12 @@ const updateCommentaire = async (req, res) => {
       return res.status(403).json({ error: "You are not authorized to update this comment." });
     }
 
-    const commentaireDTO = new CommentaireDTO({
-      CommentaireId: req.body.CommentaireId,
-      Commentaire: req.body.Commentaire,
-      DateHeure: req.body.DateHeure,
-      UserId: updatedUserId
-  });
+    const commentaireDTO = new CommentaireDTO(
+      req.body.CommentaireId,
+      req.body.Commentaire,
+      req.body.DateHeure,
+      updatedUserId
+  );
 
     const updatedCommentaire = await commentaireService.update(id, commentaireDTO);
     res.json(updatedCommentaire);

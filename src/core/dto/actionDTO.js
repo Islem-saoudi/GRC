@@ -10,10 +10,10 @@ class ActionDTO {
     Cout,
     Source,
     Status,
-    CommentaireId,
-    CoutSuppId,
+    CommentaireIds,
+    CoutSuppIds,
     DateFinSupp,
-    SecurityId
+    SecurityIds
   ) 
   {
     this.ActionId = ActionId;
@@ -26,10 +26,10 @@ class ActionDTO {
     this.Cout = Cout;
     this.Source = Source;
     this.Status = Status;
-    this.CommentaireId = CommentaireId;
-    this.CoutSuppId = CoutSuppId;
+    this.CommentaireIds = CommentaireIds;
+    this.CoutSuppIds = CoutSuppIds;
     this.DateFinSupp = DateFinSupp;
-    this.SecurityId = SecurityId;
+    this.SecurityIds = SecurityIds;
   }
 }
   

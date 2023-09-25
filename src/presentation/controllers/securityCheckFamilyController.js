@@ -17,12 +17,12 @@ const getAllSecurityCheckFamily = async (req, res) => {
 
 const createSecurityCheckFamily = async (req, res) => {
     try{
-        const securityCheckFamilyDTO = new SecurityCheckFamilyDTO({
-            SecurityId: uuid.v4(),
-            Description: req.body.Description,
-            Labbel: req.body.Labbel,
-            Source: req.body.Source
-        });
+        const securityCheckFamilyDTO = new SecurityCheckFamilyDTO(
+            uuid.v4(),
+            req.body.Description,
+            req.body.Labbel,
+            req.body.Source
+        );
 
         const createdSecurityCheckFamily = await securityCheckFamilyService.create(securityCheckFamilyDTO);
         res.status(201).json(createdSecurityCheckFamily);
@@ -48,12 +48,12 @@ const getSecurityCheckFamilyById = async (req, res) => {
 const updateSecurityCheckFamily = async (req, res) => {
     try {
         const id = req.params.id;
-        const securityCheckFamilyDTO = new SecurityCheckFamilyDTO({
-            SecurityId: req.body.SecurityId,
-            Description: req.body.Description,
-            Labbel: req.body.Labbel,
-            Source: req.body.Source
-        });
+        const securityCheckFamilyDTO = new SecurityCheckFamilyDTO(
+            req.body.SecurityId,
+            req.body.Description,
+            req.body.Labbel,
+            req.body.Source
+        );
 
         const updatedCoupSupp = await securityCheckFamilyService.update(id, securityCheckFamilyDTO);
         res.json(updatedCoupSupp);

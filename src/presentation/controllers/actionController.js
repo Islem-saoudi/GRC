@@ -35,27 +35,29 @@ const getPaginatedActions = async (req, res) => {
 
 const createAction = async (req, res) => {
   try {
-    const commentaireId = req.body.CommentaireId;
-    const coutSuppId =req.body.CoutSuppId;
-    const securityId = req.body.SecurityId;
+    const commentaireIds = req.body.CommentaireIds;
+    const coutSuppIds =req.body.CoutSuppIds;
+    const securityIds = req.body.SecurityIds;
 
 
-    const actionDTO = new ActionDTO({
-      ActionId: uuid.v4(),
-      NameAction: req.body.NameAction,
-      Description: req.body.Description,
-      TypeAction: req.body.TypeAction,
-      DateDebut: req.body.DateDebut,
-      DateFin: req.body.DateFin,
-      Priority: req.body.Priority,
-      Cout: req.body.Cout,
-      Source: req.body.Source,
-      Status: req.body.Status,
-      CommentaireId: commentaireId,
-      CoutSuppId: coutSuppId,
-      DateFinSupp: req.body.DateFinSupp,
-      SecurityId: securityId
-  });
+    const actionDTO = new ActionDTO(
+      uuid.v4(),
+      req.body.NameAction,
+      req.body.Description,
+      req.body.TypeAction,
+      req.body.DateDebut,
+      req.body.DateFin,
+      req.body.Priority,
+      req.body.Cout,
+      req.body.Source,
+      req.body.Status,
+      commentaireIds,
+      coutSuppIds,
+      req.body.DateFinSupp,
+      securityIds
+    );
+    console.log('actionDTO:', actionDTO);
+
 
     const createdAction = await actionService.create(actionDTO);
     res.status(201).json(createdAction);
@@ -84,25 +86,25 @@ const updateAction = async (req, res) => {
     const id = req.params.id;
 
     const updatedCommentaireId = req.body.CommentaireId; // Mettez à jour avec la nouvelle valeur
-    const updatedCoutSuppId = req.body.CoutSuppId; // Mettez à jour avec la nouvelle valeur
-    const updatedSecurityId = req.body.SecurityId;
+    const updatedCoutSuppId = req.body.CoutSuppId;
+    const updatedSecurityIds = req.body.SecurityIds;
     
-    const actionDTO = new ActionDTO({
-      ActionId: req.body.ActionId,
-      NameAction: req.body.NameAction,
-      Description: req.body.Description,
-      TypeAction: req.body.TypeAction,
-      DateDebut: req.body.DateDebut,
-      DateFin: req.body.DateFin,
-      Priority: req.body.Priority,
-      Cout: req.body.Cout,
-      Source: req.body.Source,
-      Status: req.body.Status,
-      CommentaireId: updatedCommentaireId,
-      CoutSuppId: updatedCoutSuppId,
-      DateFinSupp: req.body.DateFinSupp,
-      SecurityId: updatedSecurityId
-  });
+    const actionDTO = new ActionDTO(
+      req.body.ActionId,
+      req.body.NameAction,
+      req.body.Description,
+      req.body.TypeAction,
+      req.body.DateDebut,
+      req.body.DateFin,
+      req.body.Priority,
+      req.body.Cout,
+      req.body.Source,
+      req.body.Status,
+      updatedCommentaireId,
+      updatedCoutSuppId,
+      req.body.DateFinSupp,
+      updatedSecurityIds
+  );
 
     const updatedAction = await actionService.update(id, actionDTO);
     res.json(updatedAction);

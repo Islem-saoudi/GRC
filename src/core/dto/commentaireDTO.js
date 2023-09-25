@@ -7,6 +7,7 @@ class CommentaireDTO {
       this.Commentaire = Commentaire;
       this.DateHeure = DateHeure;
       this.UserId = UserId;
+
   }
 }
 

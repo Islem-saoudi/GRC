@@ -17,11 +17,11 @@ const getAllRascis = async (req, res) => {
 
 const createRasci = async (req, res) => {
     try{
-        const rasciDTO = new RasciDTO({
-            RoleRasci: uuid.v4(),
-            Description: req.body.Description,
-            Symbole: req.body.Symbole
-        });
+        const rasciDTO = new RasciDTO(
+            uuid.v4(),
+            req.body.Description,
+            req.body.Symbole
+        );
 
         const createdRasci = await rasciService.create(rasciDTO);
         res.status(201).json(createdRasci);
@@ -47,11 +47,11 @@ const getRasciById = async (req, res) => {
 const updateRasci = async (req, res) => {
     try {
         const id = req.params.id;
-        const rasciDTO = new RasciDTO({
-            RoleRasci: req.body.RoleRasci,
-            Description: req.body.Description,
-            Symbole: req.body.Symbole
-        });
+        const rasciDTO = new RasciDTO(
+            req.body.RoleRasci,
+            req.body.Description,
+            req.body.Symbole
+        );
 
         const updatedRasci = await rasciService.update(id, rasciDTO);
         res.json(updatedRasci);

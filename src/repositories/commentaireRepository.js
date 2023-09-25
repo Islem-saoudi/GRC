@@ -7,11 +7,8 @@ class CommentaireRepository {
   }
 
   async getById(id) {
-    return Commentaire.findById(id)
-    .populate('UserId') 
-    .exec();
-  }
-
+    return Commentaire.findById(id);
+  }  
   async update(id, commentaireDTO) {
     return Commentaire.findByIdAndUpdate(id, commentaireDTO, { new: true });
   }

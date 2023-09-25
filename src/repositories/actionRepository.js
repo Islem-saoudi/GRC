@@ -8,9 +8,9 @@ class ActionRepository {
 
   async getById(id) {
     return Action.findById(id)
-    .populate('CommentaireId') 
-    .populate('CoutSuppId') 
-    .populate('SecurityId') 
+    .populate('CommentaireIds') 
+    .populate('CoutSuppIds') 
+    .populate('SecurityIds') 
     .exec();
   }
 

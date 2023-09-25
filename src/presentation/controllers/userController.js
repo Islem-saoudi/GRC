@@ -17,13 +17,13 @@ const getAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
     try{
-        const userDTO = new UserDTO({
-            UserId: uuid.v4(),
-            Name: req.body.Name,
-            LastName: req.body.LastName,
-            Email: req.body.Email,
-            LastConnexion: req.body.LastConnexion
-        });
+        const userDTO = new UserDTO(
+            uuid.v4(),
+            req.body.Name,
+            req.body.LastName,
+            req.body.Email,
+            req.body.LastConnexion
+        );
 
         const createdUser = await userService.create(userDTO);
         res.status(201).json(createdUser);
@@ -49,13 +49,13 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         const id = req.params.id;
-        const userDTO = new UserDTO({
-            UserId: req.body.UserId,
-            Name: req.body.Name,
-            LastName: req.body.LastName,
-            Email: req.body.Email,
-            LastConnexion: req.body.LastConnexion
-        });
+        const userDTO = new UserDTO(
+            req.body.UserId,
+            req.body.Name,
+            req.body.LastName,
+            req.body.Email,
+            req.body.LastConnexion
+        );
 
         const updatedUser = await userService.update(id, userDTO);
         res.json(updatedUser);

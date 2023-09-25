@@ -26,4 +26,4 @@ class UserAbstractService extends UserService {
   }
 }
 
-module.exports = UserAbstractServuser
+module.exports = UserAbstractService;
